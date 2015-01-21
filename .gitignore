@@ -2,6 +2,7 @@
 
 ##Django
 db.sqlite3
+back_end/pdf_files/
 
 __pycache__/
 *.py[cod]
