@@ -16,12 +16,14 @@ def get_json(request, shelf_name):
     response_data['drawers'] = []
 
     for drawer in shelf.drawer_set.all():
-        pdf_urls = []
-        for pdf_url in drawer.pdf_set.all():
-            pdf_urls.append(pdf_url.pdf_file.url)
+        pdfs = []
+        for pdf in drawer.pdf_set.all():
+            pdfs.append({
+                'name': pdf.name,
+                'url': pdf.pdf_file.url})
         response_data['drawers'].append({
             "name": drawer.name,
-            "pdf_urls": pdf_urls})
+            "pdfs": pdfs})
 
     return HttpResponse(
         json.dumps(response_data),
