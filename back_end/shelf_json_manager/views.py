@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from shelf_json_manager.models import Shelf, Drawer, Pdf
 from django.core.urlresolvers import reverse
 from wand.image import Image
-import logging
 
 
 def index(request):
@@ -44,3 +43,33 @@ def pdf_thumbnail(request, pdf_name_arg):
         response = HttpResponse(content_type="image/jpeg")
         img.save(response)
         return response
+
+
+def search(request):
+    args = request.GET.getlist('q')
+    results = Pdf.objects.filter(tags__name__in=args).distinct()
+    response_data = {}
+    response_data['name'] = "Results"
+    response_data['drawers'] = []
+    for pdf in results:
+        thumb_url = reverse('pdf_thumbnail', kwargs={'pdf_name_arg': pdf.pdf_name})
+        for drawer in response_data['drawers']:
+            if drawer['name'] == pdf.drawer.name:
+                drawer['pdfs'].append({
+                    'name': pdf.pdf_name,
+                    'image_url': pdf.pdf_file.url,
+                    'thumbnail_url': thumb_url})
+                break
+        pdfs = []
+        pdfs.append({
+            'name': pdf.pdf_name,
+            'image_url': pdf.pdf_file.url,
+            'thumbnail_url': thumb_url
+            })
+        response_data['drawers'].append({
+            "name": pdf.drawer.name,
+            "position": pdf.drawer.position,
+            "pdfs": pdfs})
+    return HttpResponse(
+        json.dumps(response_data),
+        content_type="application/json")

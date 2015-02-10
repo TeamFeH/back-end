@@ -8,6 +8,7 @@ urlpatterns = patterns(
     url(
         r'^get_thumbnail/(?P<pdf_name_arg>\w+)/$',
         views.pdf_thumbnail, name='pdf_thumbnail'),
+    url(r'^search/', views.search, name='search'),
     url(r'^(?P<shelf_name>\w+)/$', views.get_json, name='json'),
 
 )
