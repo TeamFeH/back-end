@@ -3,6 +3,9 @@ Back-end of the project
 
 ##Install...
 
+Install imagemagic for you distribution:
+Example: yum install imagemagic
+
 pip install -r requirements.pip
 
 ##... & Launch
