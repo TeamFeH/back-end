@@ -1,5 +1,7 @@
 from django.db import models
 
+from taggit.managers import TaggableManager
+
 
 class Shelf(models.Model):
     name = models.CharField(max_length=200)
@@ -21,6 +23,7 @@ class Pdf(models.Model):
     drawer = models.ForeignKey(Drawer)
     pdf_name = models.CharField(max_length=200)
     pdf_file = models.FileField(upload_to="pdf_files")
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.pdf_name

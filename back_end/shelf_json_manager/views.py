@@ -44,4 +44,3 @@ def pdf_thumbnail(request, pdf_name_arg):
         response = HttpResponse(content_type="image/jpeg")
         img.save(response)
         return response
-
