@@ -18,8 +18,8 @@ class Drawer(models.Model):
 
 class Pdf(models.Model):
     drawer = models.ForeignKey(Drawer)
-    name = models.CharField(max_length=200)
+    pdf_name = models.CharField(max_length=200)
     pdf_file = models.FileField(upload_to="pdf_files")
 
     def __unicode__(self):
-        return self.name
+        return self.pdf_name
