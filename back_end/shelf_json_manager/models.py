@@ -11,6 +11,7 @@ class Shelf(models.Model):
 class Drawer(models.Model):
     shelf = models.ForeignKey(Shelf)
     name = models.CharField(max_length=200)
+    position = models.IntegerField()
 
     def __unicode__(self):
         return self.name

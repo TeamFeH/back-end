@@ -28,6 +28,7 @@ def get_json(request, shelf_name):
                 'thumbnail_url': thumb_url})
         response_data['drawers'].append({
             "name": drawer.name,
+            "position": drawer.position,
             "pdfs": pdfs})
 
     return HttpResponse(
