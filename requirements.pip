@@ -1,6 +1,5 @@
 Django==1.7.1
 wsgiref==0.1.2
 django-cors-headers==1.0.0
-sorl-thumbnail==12.2
 Wand==0.3.9
 django-taggit==0.12.2
