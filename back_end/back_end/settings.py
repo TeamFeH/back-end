@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'shelf_json_manager',
     'corsheaders',
     'taggit',
+    'colorful',
 )
 
 MIDDLEWARE_CLASSES = (
