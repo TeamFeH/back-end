@@ -28,7 +28,8 @@ def get_json(request, shelf_name):
         response_data['drawers'].append({
             "name": drawer.name,
             "position": drawer.position,
-            "pdfs": pdfs})
+            "pdfs": pdfs,
+            "color": drawer.color})
 
     return HttpResponse(
         json.dumps(response_data),
@@ -70,7 +71,8 @@ def search(request):
         response_data['drawers'].append({
             "name": pdf.drawer.name,
             "position": pdf.drawer.position,
-            "pdfs": pdfs})
+            "pdfs": pdfs,
+            "color": pdf.drawer.color})
     return HttpResponse(
         json.dumps(response_data),
         content_type="application/json")
