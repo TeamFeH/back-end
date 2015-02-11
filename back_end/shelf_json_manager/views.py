@@ -37,9 +37,10 @@ def get_json(request, shelf_name):
 
 def pdf_thumbnail(request, pdf_name_arg):
     pdf = Pdf.objects.get(pdf_name=pdf_name_arg)
-    with Image(filename=pdf.pdf_file.path) as img:
+    with Image(filename=pdf.pdf_file.path) as img_seq:
+        img = Image(img_seq.sequence[0])
         img.format = 'jpeg'
-        img.sample(20, 20)
+        img.sample(500, 500)
         response = HttpResponse(content_type="image/jpeg")
         img.save(response)
         return response
